@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">Sound Recorder</string>
+    <string name="start_record">Начать запись</string>
+    <string name="stop_record">остановить запись</string>
+    <string name="new_record">Сделать запись</string>
+    <string name="records_list">Список записей</string>
+    <string name="illegal_exception_when_mic_used">Ошибка старта записи! Возможно микрофон используется другим приложением!</string>
+    <string name="sad_emoji">😔</string>
+    <string name="record_folder_is_empty">Здесь пока ничего нет</string>
+    <string name="rename_record">Переименовать запись</string>
+    <string name="share_record">Поделится записью</string>
+    <string name="remove_record">Удалить запись</string>
+    <string name="accept_change">Ок</string>
+    <string name="decline_change">Отмена</string>
+    <string name="contact_with_dev">Связаться с разработчиком</string>
+    <string name="about_app">О приложении</string>
+    <string name="problem_title">Проблема</string>
+    <string name="describe_your_problem">Опишите вашу проблему</string>
+    <string name="send_report">Отправить</string>
+    <string name="empty_report">Сообщение об ошибке не может быть пустым!</string>
+</resources>

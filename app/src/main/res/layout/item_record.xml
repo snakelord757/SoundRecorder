@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/record_item_height"
+    android:layout_marginStart="@dimen/record_item_margin"
+    android:layout_marginEnd="@dimen/record_item_margin"
+    android:layout_marginBottom="@dimen/record_item_margin">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/record_item"
+        android:clickable="true"
+        android:focusable="true"
+        android:background="?attr/selectableItemBackground"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+    <TextView
+        android:id="@+id/record_name"
+        android:textSize="@dimen/record_name_text_size"
+        android:textColor="@android:color/black"
+        android:singleLine="true"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/record_info_margin"
+        android:layout_marginStart="@dimen/record_info_margin"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="Имя файла"/>
+
+    <TextView
+        android:id="@+id/record_duration"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/record_info_margin"
+        android:layout_marginStart="@dimen/record_info_margin"
+        app:layout_constraintTop_toBottomOf="@id/record_name"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="0:00"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

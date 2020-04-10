@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <Chronometer
+        android:id="@+id/chronometer"
+        android:textColor="@android:color/black"
+        android:textSize="@dimen/chronometer_text_size"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="@dimen/chronometer_margin_bottom"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+
+    <ImageButton
+        android:id="@+id/start_recording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/buttons_margin_top"
+        android:background="@drawable/action_button_ripple"
+        android:src="@drawable/ic_play_arrow_red_24dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/stop_recording"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer" />
+
+    <ImageButton
+        android:id="@+id/stop_recording"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/buttons_margin_top"
+        android:background="@drawable/action_button_ripple"
+        android:src="@drawable/ic_stop_red_24dp"
+        app:layout_constraintStart_toEndOf="@id/start_recording"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/chronometer" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

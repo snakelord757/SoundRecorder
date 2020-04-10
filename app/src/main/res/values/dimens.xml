@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="dialog_margin_start_end">50dp</dimen>
+    <dimen name="dialog_buttons_margin">5dp</dimen>
+    <dimen name="dialog_corner_radius">10dp</dimen>
+    <dimen name="record_item_height">70dp</dimen>
+    <dimen name="record_item_margin">10dp</dimen>
+    <dimen name="record_name_text_size">25sp</dimen>
+    <dimen name="record_info_margin">5dp</dimen>
+    <dimen name="edit_text_margins">10dp</dimen>
+    <dimen name="edit_text_container_margin_top">5dp</dimen>
+    <dimen name="chronometer_text_size">35sp</dimen>
+    <dimen name="chronometer_margin_bottom">50dp</dimen>
+    <dimen name="buttons_margin_top">20dp</dimen>
+    <dimen name="recycler_view_margin_top">15dp</dimen>
+    <dimen name="emoji_size">40sp</dimen>
+    <dimen name="record_folder_empty_message_text_size">15sp</dimen>
+    <dimen name="record_folder_empty_message_margin_top">10dp</dimen>
+    <dimen name="send_report_button_margin_top">10dp</dimen>
+</resources>
