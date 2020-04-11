@@ -28,13 +28,18 @@ public final class RecordFragment extends Fragment {
     }
 
     @Override
+    public void onActivityCreated(@Nullable Bundle savedInstanceState) {
+        super.onActivityCreated(savedInstanceState);
+        restoreChronometer(savedInstanceState);
+    }
+
+    @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View recordScreen = inflater.inflate(R.layout.fragment_record_screen, container, false);
         mChronometer = recordScreen.findViewById(R.id.chronometer);
         mStartRecordImageButton = recordScreen.findViewById(R.id.start_recording);
         mStopRecordImageButton = recordScreen.findViewById(R.id.stop_recording);
         setButtonsClickListener();
-        if (savedInstanceState != null) restoreChronometer(savedInstanceState);
         return recordScreen;
     }
 
@@ -50,6 +55,7 @@ public final class RecordFragment extends Fragment {
             if (savedState.getBoolean(IS_RECORD_STARTED)) {
                 mChronometer.setBase(savedState.getLong(CHRONOMETER_STATE));
                 mChronometer.start();
+                mStartRecordImageButton.setEnabled(false);
             }
         }
     }
