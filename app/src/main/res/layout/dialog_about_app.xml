@@ -11,12 +11,12 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"/>
+        android:layout_marginTop="@dimen/app_icon_margin_top"/>
 
     <TextView
         android:id="@+id/app_name"
         android:text="@string/app_name"
-        android:textSize="20sp"
+        android:textSize="@dimen/app_name_text_size"
         android:textStyle="bold"
         android:textColor="@android:color/black"
         android:layout_gravity="center_horizontal"
@@ -29,7 +29,7 @@
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:layout_marginBottom="@dimen/app_version_margin_bottom"
         tools:text="Version : 1.0"/>
 
 </LinearLayout>
