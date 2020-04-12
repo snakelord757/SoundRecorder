@@ -24,7 +24,7 @@
     <EditText
         android:id="@+id/report_description"
         android:hint="@string/describe_your_problem"
-        android:inputType="text"
+        android:inputType="text|textMultiLine"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
