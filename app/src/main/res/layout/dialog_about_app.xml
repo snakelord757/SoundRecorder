@@ -25,7 +25,7 @@
 
     <TextView
         android:id="@+id/app_version"
-        android:textSize="15sp"
+        android:textSize="@dimen/app_version_text_size"
         android:layout_gravity="center_horizontal"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
