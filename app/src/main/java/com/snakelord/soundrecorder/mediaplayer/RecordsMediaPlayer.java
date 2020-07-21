@@ -12,7 +12,7 @@ public class RecordsMediaPlayer {
     private MediaPlayer player;
     private File record;
     private FileInputStream fileInputStream;
-    private boolean mPlayerStarted = false;
+    private boolean playerStarted = false;
 
     public RecordsMediaPlayer(String recordPath)  {
         record = new File(recordPath);
@@ -47,12 +47,12 @@ public class RecordsMediaPlayer {
     public void startPlayer() {
         isPlayerCreated();
         player.start();
-        mPlayerStarted = true;
+        playerStarted = true;
     }
 
     public void pausePlayer() {
         player.pause();
-        mPlayerStarted = false;
+        playerStarted = false;
     }
 
     public void stopPlayer() {
@@ -74,5 +74,5 @@ public class RecordsMediaPlayer {
         }
     }
 
-    public boolean isPlayerStarted() { return mPlayerStarted; }
+    public boolean isPlayerStarted() { return playerStarted; }
 }
