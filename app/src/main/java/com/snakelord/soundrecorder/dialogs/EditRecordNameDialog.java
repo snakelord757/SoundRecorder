@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.dialogs;
+package com.snakelord.soundrecorder.dialogs;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -9,9 +9,9 @@ import android.widget.EditText;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import com.snakelord.incode_soundrecorder.R;
-import com.snakelord.incode_soundrecorder.interfaces.DialogCallback;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkWithFiles;
+import com.snakelord.soundrecorder.R;
+import com.snakelord.soundrecorder.interfaces.DialogCallback;
+import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 
 public final class EditRecordNameDialog extends DialogFragment {
 

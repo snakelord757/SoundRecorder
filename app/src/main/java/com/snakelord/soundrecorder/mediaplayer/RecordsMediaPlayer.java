@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.mediaplayer;
+package com.snakelord.soundrecorder.mediaplayer;
 
 import android.media.AudioManager;
 import android.media.MediaPlayer;

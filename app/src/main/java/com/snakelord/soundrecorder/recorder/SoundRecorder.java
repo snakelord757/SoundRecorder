@@ -1,11 +1,11 @@
-package com.snakelord.incode_soundrecorder.recorder;
+package com.snakelord.soundrecorder.recorder;
 
 import android.content.Context;
 import android.media.MediaRecorder;
 import android.widget.Toast;
-import com.snakelord.incode_soundrecorder.R;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkWithFiles;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkingFolder;
+import com.snakelord.soundrecorder.R;
+import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
+import com.snakelord.soundrecorder.workingFolder.WorkingFolder;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
 import java.util.Date;

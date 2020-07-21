@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.interfaces;
+package com.snakelord.soundrecorder.interfaces;
 
 public interface DialogCallback {
     void updateRecyclerView();

@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder;
+package com.snakelord.soundrecorder;
 
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -10,7 +10,7 @@ import android.widget.ImageButton;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
-import com.snakelord.incode_soundrecorder.recorder.SoundRecorder;
+import com.snakelord.soundrecorder.recorder.SoundRecorder;
 
 public final class RecordFragment extends Fragment {
 

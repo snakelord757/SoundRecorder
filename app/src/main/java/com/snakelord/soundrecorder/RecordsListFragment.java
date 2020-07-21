@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder;
+package com.snakelord.soundrecorder;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -10,12 +10,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
-import com.snakelord.incode_soundrecorder.adapter.RecordsListAdapter;
-import com.snakelord.incode_soundrecorder.dialogs.BottomSheetPlayer;
-import com.snakelord.incode_soundrecorder.dialogs.OptionsDialogFragment;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkingFolder;
-import com.snakelord.incode_soundrecorder.interfaces.DialogCallback;
-import com.snakelord.incode_soundrecorder.interfaces.OnRecordListener;
+import com.snakelord.soundrecorder.adapter.RecordsListAdapter;
+import com.snakelord.soundrecorder.dialogs.BottomSheetPlayer;
+import com.snakelord.soundrecorder.dialogs.OptionsDialogFragment;
+import com.snakelord.soundrecorder.workingFolder.WorkingFolder;
+import com.snakelord.soundrecorder.interfaces.DialogCallback;
+import com.snakelord.soundrecorder.interfaces.OnRecordListener;
 
 public final class RecordsListFragment extends Fragment implements OnRecordListener, DialogCallback {
 

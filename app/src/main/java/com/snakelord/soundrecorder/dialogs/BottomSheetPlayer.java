@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.dialogs;
+package com.snakelord.soundrecorder.dialogs;
 
 import android.app.Dialog;
 import android.os.Bundle;
@@ -10,9 +10,9 @@ import androidx.annotation.Nullable;
 import com.google.android.material.bottomsheet.BottomSheetBehavior;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment;
-import com.snakelord.incode_soundrecorder.R;
-import com.snakelord.incode_soundrecorder.mediaplayer.RecordsMediaPlayer;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkWithFiles;
+import com.snakelord.soundrecorder.R;
+import com.snakelord.soundrecorder.mediaplayer.RecordsMediaPlayer;
+import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 
 public final class BottomSheetPlayer extends BottomSheetDialogFragment {
 

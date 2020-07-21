@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.workingFolder;
+package com.snakelord.soundrecorder.workingFolder;
 
 import android.content.Context;
 import java.io.File;

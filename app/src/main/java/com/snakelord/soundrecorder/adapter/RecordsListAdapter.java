@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.adapter;
+package com.snakelord.soundrecorder.adapter;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -7,10 +7,10 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
-import com.snakelord.incode_soundrecorder.R;
-import com.snakelord.incode_soundrecorder.RecordsListFragment;
-import com.snakelord.incode_soundrecorder.interfaces.OnRecordListener;
-import com.snakelord.incode_soundrecorder.workingFolder.WorkWithFiles;
+import com.snakelord.soundrecorder.R;
+import com.snakelord.soundrecorder.RecordsListFragment;
+import com.snakelord.soundrecorder.interfaces.OnRecordListener;
+import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 import java.io.File;
 
 public final class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.RecordsViewHolder> {

@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder.dialogs;
+package com.snakelord.soundrecorder.dialogs;
 
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -10,7 +10,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-import com.snakelord.incode_soundrecorder.R;
+import com.snakelord.soundrecorder.R;
 
 public final class AboutAppDialogFragment extends DialogFragment {
 

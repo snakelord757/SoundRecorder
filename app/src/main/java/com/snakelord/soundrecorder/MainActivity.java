@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder;
+package com.snakelord.soundrecorder;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,7 +15,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-import com.snakelord.incode_soundrecorder.dialogs.AboutAppDialogFragment;
+import com.snakelord.soundrecorder.dialogs.AboutAppDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 

@@ -1,4 +1,4 @@
-package com.snakelord.incode_soundrecorder;
+package com.snakelord.soundrecorder;
 
 import org.junit.Test;
 
