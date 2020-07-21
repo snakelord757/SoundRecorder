@@ -9,18 +9,18 @@ import java.io.IOException;
 
 public class RecordsMediaPlayer {
 
-    private MediaPlayer mPlayer;
-    private File mRecord;
-    private FileInputStream mFileInputStream;
+    private MediaPlayer player;
+    private File record;
+    private FileInputStream fileInputStream;
     private boolean mPlayerStarted = false;
 
     public RecordsMediaPlayer(String recordPath)  {
-        mRecord = new File(recordPath);
+        record = new File(recordPath);
     }
 
     private void prepareRecord() {
         try {
-            mFileInputStream = new FileInputStream(mRecord);
+            fileInputStream = new FileInputStream(record);
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
@@ -28,16 +28,16 @@ public class RecordsMediaPlayer {
     }
 
     private void initPlayer() {
-        mPlayer = new MediaPlayer();
+        player = new MediaPlayer();
         try {
-            mPlayer.setDataSource(mFileInputStream.getFD());
+            player.setDataSource(fileInputStream.getFD());
         }
         catch (IOException e) {
             e.printStackTrace();
         }
-        mPlayer.setAudioStreamType(AudioManager.STREAM_MUSIC);
+        player.setAudioStreamType(AudioManager.STREAM_MUSIC);
         try {
-            mPlayer.prepare();
+            player.prepare();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -46,31 +46,31 @@ public class RecordsMediaPlayer {
 
     public void startPlayer() {
         isPlayerCreated();
-        mPlayer.start();
+        player.start();
         mPlayerStarted = true;
     }
 
     public void pausePlayer() {
-        mPlayer.pause();
+        player.pause();
         mPlayerStarted = false;
     }
 
     public void stopPlayer() {
-        if (mPlayer != null) mPlayer.stop();
+        if (player != null) player.stop();
     }
 
     private void isPlayerCreated() {
-        if (mPlayer == null) {
+        if (player == null) {
             prepareRecord();
             initPlayer();
         }
     }
 
     public void releasePlayer() {
-        if (mPlayer != null) {
+        if (player != null) {
             if (isPlayerStarted()) pausePlayer();
-            mPlayer.reset();
-            mPlayer.release();
+            player.reset();
+            player.release();
         }
     }
 

@@ -15,10 +15,10 @@ import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 
 public final class EditRecordNameDialog extends DialogFragment {
 
-    private EditText mRecordNameEditText;
-    private Button mAcceptChangesButton;
-    private Button mDeclineChangesButton;
-    private DialogCallback mDialogCallback;
+    private EditText recordNameEditText;
+    private Button acceptChangesButton;
+    private Button declineChangesButton;
+    private DialogCallback dialogCallback;
     private static final String RECORD_PATH = "Record path";
 
     static EditRecordNameDialog newInstance(String path) {
@@ -38,30 +38,30 @@ public final class EditRecordNameDialog extends DialogFragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View dialogView = inflater.inflate(R.layout.dialog_change_record_name, container, false);
-        mRecordNameEditText = dialogView.findViewById(R.id.record_name_editor);
-        mAcceptChangesButton = dialogView.findViewById(R.id.accept_change);
-        mDeclineChangesButton = dialogView.findViewById(R.id.decline_change);
+        recordNameEditText = dialogView.findViewById(R.id.record_name_editor);
+        acceptChangesButton = dialogView.findViewById(R.id.accept_change);
+        declineChangesButton = dialogView.findViewById(R.id.decline_change);
         setRecordNameEditText();
         setButtonsOnClickListener(getArguments().getString(RECORD_PATH));
         return dialogView;
     }
 
     private void setRecordNameEditText() {
-        mRecordNameEditText.setText(WorkWithFiles.getFileName(getArguments().getString(RECORD_PATH)));
+        recordNameEditText.setText(WorkWithFiles.getFileName(getArguments().getString(RECORD_PATH)));
     }
 
     void setDialogCallback(DialogCallback mDialogCallback) {
-        this.mDialogCallback = mDialogCallback;
+        this.dialogCallback = mDialogCallback;
     }
 
     private void setButtonsOnClickListener(String path) {
-        mAcceptChangesButton.setOnClickListener(v -> {
-            if (!mRecordNameEditText.getText().toString().isEmpty()) {
-                WorkWithFiles.renameRecord(getContext(), path, mRecordNameEditText.getText().toString());
-                mDialogCallback.updateRecyclerView();
+        acceptChangesButton.setOnClickListener(v -> {
+            if (!recordNameEditText.getText().toString().isEmpty()) {
+                WorkWithFiles.renameRecord(getContext(), path, recordNameEditText.getText().toString());
+                dialogCallback.updateRecyclerView();
                 dismiss();
             }
         });
-        mDeclineChangesButton.setOnClickListener(v -> dismiss());
+        declineChangesButton.setOnClickListener(v -> dismiss());
     }
 }

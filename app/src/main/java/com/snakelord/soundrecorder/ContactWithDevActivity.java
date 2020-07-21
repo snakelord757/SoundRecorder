@@ -11,11 +11,11 @@ import de.cketti.mailto.EmailIntentBuilder;
 
 public class ContactWithDevActivity extends AppCompatActivity {
 
-    private EditText mReportTitleEditText;
-    private EditText mReportDescriptionEditText;
-    private Button mSendReportButton;
-    private String mMailSubject;
-    private String mMailBody;
+    private EditText reportTitleEditText;
+    private EditText reportDescriptionEditText;
+    private Button sendReportButton;
+    private String mailSubject;
+    private String mailBody;
     private static final String DEV_MAIL = "blackkiller1527@gmail.com";
     private static final String TITLE = "Title";
     private static final String DESCRIPTION = "Description";
@@ -24,13 +24,13 @@ public class ContactWithDevActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_contact_with_dev);
-        mReportTitleEditText = findViewById(R.id.report_title);
-        mReportDescriptionEditText = findViewById(R.id.report_description);
-        mSendReportButton = findViewById(R.id.send_report);
+        reportTitleEditText = findViewById(R.id.report_title);
+        reportDescriptionEditText = findViewById(R.id.report_description);
+        sendReportButton = findViewById(R.id.send_report);
         setSendReportButtonClickListener();
     }
 
-    private void setSendReportButtonClickListener() { mSendReportButton.setOnClickListener(v -> sendReport()); }
+    private void setSendReportButtonClickListener() { sendReportButton.setOnClickListener(v -> sendReport()); }
 
     private void sendReport() {
         if (isReportEmpty()) {
@@ -41,23 +41,23 @@ public class ContactWithDevActivity extends AppCompatActivity {
             Toast.makeText(this, R.string.empty_report, Toast.LENGTH_SHORT).show();
     }
 
-    private boolean isReportEmpty() { return !mReportDescriptionEditText.getText().toString().equals(""); }
+    private boolean isReportEmpty() { return !reportDescriptionEditText.getText().toString().equals(""); }
 
     private void prepareReportText() {
-        mMailSubject = mReportTitleEditText.getText().toString();
-        mMailBody = mReportDescriptionEditText.getText().toString();
+        mailSubject = reportTitleEditText.getText().toString();
+        mailBody = reportDescriptionEditText.getText().toString();
     }
 
     private Intent generateIntent() {
         prepareReportText();
-        return EmailIntentBuilder.from(this).to(DEV_MAIL).subject(mMailSubject).body(mMailBody).build();
+        return EmailIntentBuilder.from(this).to(DEV_MAIL).subject(mailSubject).body(mailBody).build();
     }
 
     @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        String title = mReportTitleEditText.getText().toString();
-        String description = mReportDescriptionEditText.getText().toString();
+        String title = reportTitleEditText.getText().toString();
+        String description = reportDescriptionEditText.getText().toString();
         outState.putString(TITLE, title);
         outState.putString(DESCRIPTION, description);
     }
@@ -65,7 +65,7 @@ public class ContactWithDevActivity extends AppCompatActivity {
     @Override
     protected void onRestoreInstanceState(@NonNull Bundle savedInstanceState) {
         super.onRestoreInstanceState(savedInstanceState);
-        mReportTitleEditText.setText(savedInstanceState.getString(TITLE));
-        mReportDescriptionEditText.setText(savedInstanceState.getString(DESCRIPTION));
+        reportTitleEditText.setText(savedInstanceState.getString(TITLE));
+        reportDescriptionEditText.setText(savedInstanceState.getString(DESCRIPTION));
     }
 }

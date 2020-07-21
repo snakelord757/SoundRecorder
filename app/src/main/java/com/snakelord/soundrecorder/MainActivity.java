@@ -19,9 +19,9 @@ import com.snakelord.soundrecorder.dialogs.AboutAppDialogFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private FragmentManager mFragmentManager;
-    private BottomNavigationView mBottomNavigationView;
-    private Fragment mCurrentFragment = new RecordFragment();
+    private FragmentManager fragmentManager;
+    private BottomNavigationView bottomNavigationView;
+    private Fragment currentFragment = new RecordFragment();
     private static final String SAVED_FRAGMENT_TAG = "Saved fragment tag";
     private static final String RECORD_FRAGMENT = "Record fragment";
     private static final String RECORDS_LIST_FRAGMENT = "Records list fragment";
@@ -33,8 +33,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        mBottomNavigationView = findViewById(R.id.bottom_navigation_bar);
-        mFragmentManager = getSupportFragmentManager();
+        bottomNavigationView = findViewById(R.id.bottom_navigation_bar);
+        fragmentManager = getSupportFragmentManager();
         setNavigationViewListener();
         checkPermission();
         setupFragment(savedInstanceState);
@@ -53,15 +53,15 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void setNavigationViewListener() {
-        mBottomNavigationView.setOnNavigationItemSelectedListener(item -> {
+        bottomNavigationView.setOnNavigationItemSelectedListener(item -> {
             switch (item.getItemId()) {
                 case R.id.new_record :
-                    mCurrentFragment = new RecordFragment();
-                    mFragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, mCurrentFragment, RECORD_FRAGMENT).commit();
+                    currentFragment = new RecordFragment();
+                    fragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, currentFragment, RECORD_FRAGMENT).commit();
                     break;
                 case R.id.records_list :
-                    mCurrentFragment = new RecordsListFragment();
-                    mFragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, mCurrentFragment, RECORDS_LIST_FRAGMENT).commit();
+                    currentFragment = new RecordsListFragment();
+                    fragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, currentFragment, RECORDS_LIST_FRAGMENT).commit();
                     break;
             }
             return true;
@@ -71,18 +71,18 @@ public class MainActivity extends AppCompatActivity {
     private void setupFragment(Bundle savedState) {
         if (savedState != null && savedState.containsKey(SAVED_FRAGMENT_TAG)) {
             String savedFragmentTag = savedState.getString(SAVED_FRAGMENT_TAG);
-            mCurrentFragment = getSupportFragmentManager().getFragment(savedState, savedFragmentTag);
-            mFragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, mCurrentFragment, savedFragmentTag).commit();
+            currentFragment = getSupportFragmentManager().getFragment(savedState, savedFragmentTag);
+            fragmentManager.beginTransaction().replace(FRAGMENT_CONTAINER, currentFragment, savedFragmentTag).commit();
         }
         else
-            mBottomNavigationView.setSelectedItemId(R.id.new_record);
+            bottomNavigationView.setSelectedItemId(R.id.new_record);
     }
 
    @Override
     protected void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putString(SAVED_FRAGMENT_TAG, mCurrentFragment.getTag());
-        getSupportFragmentManager().putFragment(outState, mCurrentFragment.getTag(), mCurrentFragment);
+        outState.putString(SAVED_FRAGMENT_TAG, currentFragment.getTag());
+        getSupportFragmentManager().putFragment(outState, currentFragment.getTag(), currentFragment);
     }
 
     @Override

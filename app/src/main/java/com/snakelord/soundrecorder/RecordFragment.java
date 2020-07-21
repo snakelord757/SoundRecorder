@@ -14,10 +14,10 @@ import com.snakelord.soundrecorder.recorder.SoundRecorder;
 
 public final class RecordFragment extends Fragment {
 
-    private ImageButton mStartRecordImageButton;
-    private ImageButton mStopRecordImageButton;
-    private Chronometer mChronometer;
-    private SoundRecorder mSoundRecorder;
+    private ImageButton startRecordImageButton;
+    private ImageButton stopRecordImageButton;
+    private Chronometer chronometer;
+    private SoundRecorder soundRecorder;
     private static final String CHRONOMETER_STATE = "Chronometer state";
     private static final String IS_RECORD_STARTED = "Record state";
 
@@ -36,60 +36,60 @@ public final class RecordFragment extends Fragment {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View recordScreen = inflater.inflate(R.layout.fragment_record_screen, container, false);
-        mChronometer = recordScreen.findViewById(R.id.chronometer);
-        mStartRecordImageButton = recordScreen.findViewById(R.id.start_recording);
-        mStopRecordImageButton = recordScreen.findViewById(R.id.stop_recording);
+        chronometer = recordScreen.findViewById(R.id.chronometer);
+        startRecordImageButton = recordScreen.findViewById(R.id.start_recording);
+        stopRecordImageButton = recordScreen.findViewById(R.id.stop_recording);
         setButtonsClickListener();
         return recordScreen;
     }
 
-    private void initRecorder() { if (mSoundRecorder == null) mSoundRecorder = new SoundRecorder(getContext()); }
+    private void initRecorder() { if (soundRecorder == null) soundRecorder = new SoundRecorder(getContext()); }
 
     private void setButtonsClickListener() {
-        mStartRecordImageButton.setOnClickListener(v -> startRecord());
-        mStopRecordImageButton.setOnClickListener(v -> stopRecord());
+        startRecordImageButton.setOnClickListener(v -> startRecord());
+        stopRecordImageButton.setOnClickListener(v -> stopRecord());
     }
 
     private void restoreChronometer(Bundle savedState) {
         if (savedState != null) {
             if (savedState.getBoolean(IS_RECORD_STARTED)) {
-                mChronometer.setBase(savedState.getLong(CHRONOMETER_STATE));
-                mChronometer.start();
-                mStartRecordImageButton.setEnabled(false);
+                chronometer.setBase(savedState.getLong(CHRONOMETER_STATE));
+                chronometer.start();
+                startRecordImageButton.setEnabled(false);
             }
         }
     }
 
     private void startRecord() {
         initRecorder();
-        if (mSoundRecorder.startRecording()) {
-            mChronometer.setBase(SystemClock.elapsedRealtime());
-            mChronometer.start();
-            mStartRecordImageButton.setClickable(false);
+        if (soundRecorder.startRecording()) {
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            chronometer.start();
+            startRecordImageButton.setClickable(false);
         }
     }
 
     private void stopRecord() {
         if (isSoundRecorderCreated()) {
-            mSoundRecorder.stopRecording();
-            mChronometer.setBase(SystemClock.elapsedRealtime());
-            mChronometer.stop();
-            mStartRecordImageButton.setClickable(true);
+            soundRecorder.stopRecording();
+            chronometer.setBase(SystemClock.elapsedRealtime());
+            chronometer.stop();
+            startRecordImageButton.setClickable(true);
         }
     }
 
-    private boolean isSoundRecorderCreated() { return mSoundRecorder != null; }
+    private boolean isSoundRecorderCreated() { return soundRecorder != null; }
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
         super.onSaveInstanceState(outState);
-        outState.putLong(CHRONOMETER_STATE, mChronometer.getBase());
-        if (mSoundRecorder != null) outState.putBoolean(IS_RECORD_STARTED, mSoundRecorder.isRecordStarted());
+        outState.putLong(CHRONOMETER_STATE, chronometer.getBase());
+        if (soundRecorder != null) outState.putBoolean(IS_RECORD_STARTED, soundRecorder.isRecordStarted());
     }
 
     @Override
     public void onDestroy() {
-        if (isSoundRecorderCreated()) mSoundRecorder.releaseRecorder();
+        if (isSoundRecorderCreated()) soundRecorder.releaseRecorder();
         super.onDestroy();
     }
 }

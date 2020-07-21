@@ -14,10 +14,10 @@ import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 
 public final class OptionsDialogFragment extends DialogFragment  {
 
-    private Button mRenameRecordButton;
-    private Button mShareRecordButton;
-    private Button mRemoveRecordButton;
-    private DialogCallback mDialogCallback;
+    private Button renameRecordButton;
+    private Button shareRecordButton;
+    private Button removeRecordButton;
+    private DialogCallback dialogCallback;
     private static final String CURRENT_RECORD_PATH = "Current record path";
 
     public static OptionsDialogFragment newInstance(String recordPath) {
@@ -37,33 +37,33 @@ public final class OptionsDialogFragment extends DialogFragment  {
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View dialogView = inflater.inflate(R.layout.dialog_record_options, container, false);
-        mRenameRecordButton = dialogView.findViewById(R.id.rename_record_button);
-        mShareRecordButton = dialogView.findViewById(R.id.share_record_button);
-        mRemoveRecordButton = dialogView.findViewById(R.id.remove_record_button);
+        renameRecordButton = dialogView.findViewById(R.id.rename_record_button);
+        shareRecordButton = dialogView.findViewById(R.id.share_record_button);
+        removeRecordButton = dialogView.findViewById(R.id.remove_record_button);
         setButtonsClickListener(getArguments().getString(CURRENT_RECORD_PATH));
         return dialogView;
     }
 
     public void setDialogCallback(DialogCallback dialogCallback) {
-        this.mDialogCallback = dialogCallback;
+        this.dialogCallback = dialogCallback;
     }
 
     private void setButtonsClickListener(String recordPath) {
-        mRenameRecordButton.setOnClickListener(v -> {
+        renameRecordButton.setOnClickListener(v -> {
             EditRecordNameDialog dialog = EditRecordNameDialog.newInstance(recordPath);
-            dialog.setDialogCallback(mDialogCallback);
+            dialog.setDialogCallback(dialogCallback);
             dialog.show(getFragmentManager(),null);
             dismiss();
         });
-        mShareRecordButton.setOnClickListener(v -> {
+        shareRecordButton.setOnClickListener(v -> {
             WorkWithFiles.shareRecord(getActivity(), recordPath);
             dismiss();
-            mDialogCallback.updateRecyclerView();
+            dialogCallback.updateRecyclerView();
         });
-        mRemoveRecordButton.setOnClickListener(v -> {
+        removeRecordButton.setOnClickListener(v -> {
             WorkWithFiles.removeRecord(recordPath);
             dismiss();
-            mDialogCallback.updateRecyclerView();
+            dialogCallback.updateRecyclerView();
         });
     }
 }

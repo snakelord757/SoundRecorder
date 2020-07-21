@@ -13,11 +13,11 @@ import java.util.Locale;
 
 public class SoundRecorder {
 
-    private MediaRecorder mRecorder;
-    private WorkingFolder mRecordsPath;
-    private Context mContext;
-    private String mRecordName;
-    private boolean mRecordStarted = false;
+    private MediaRecorder recorder;
+    private WorkingFolder recordsPath;
+    private Context context;
+    private String recordName;
+    private boolean recordStarted = false;
     private static final String DATE_PATTERN = "dd-M-yyyy hh:mm:ss";
     private static final String RECORD_NAME = "/Record_";
     private static final String RECORD_FORMAT = ".ogg";
@@ -25,21 +25,21 @@ public class SoundRecorder {
     private static final int RECORD_SAMPLING_RATE = 44100;
 
     public SoundRecorder(Context context) {
-        this.mContext = context;
-        mRecordsPath = new WorkingFolder(context);
+        this.context = context;
+        recordsPath = new WorkingFolder(context);
     }
 
     private void initRecorder() {
-        mRecorder = new MediaRecorder();
-        mRecorder.setAudioSource(MediaRecorder.AudioSource.MIC);
-        mRecorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
-        mRecorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
-        mRecorder.setAudioEncodingBitRate(RECORD_BIT_RATE);
-        mRecorder.setAudioSamplingRate(RECORD_SAMPLING_RATE);
-        mRecordName = generateRecordName();
-        mRecorder.setOutputFile(mRecordName);
+        recorder = new MediaRecorder();
+        recorder.setAudioSource(MediaRecorder.AudioSource.MIC);
+        recorder.setOutputFormat(MediaRecorder.OutputFormat.AAC_ADTS);
+        recorder.setAudioEncoder(MediaRecorder.AudioEncoder.AAC);
+        recorder.setAudioEncodingBitRate(RECORD_BIT_RATE);
+        recorder.setAudioSamplingRate(RECORD_SAMPLING_RATE);
+        recordName = generateRecordName();
+        recorder.setOutputFile(recordName);
         try {
-            mRecorder.prepare();
+            recorder.prepare();
         }
         catch (IOException e) {
             e.printStackTrace();
@@ -47,19 +47,19 @@ public class SoundRecorder {
     }
 
     private String generateRecordName() {
-        return mRecordsPath.getFolder() + RECORD_NAME + new SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(new Date()) + RECORD_FORMAT;
+        return recordsPath.getFolder() + RECORD_NAME + new SimpleDateFormat(DATE_PATTERN, Locale.getDefault()).format(new Date()) + RECORD_FORMAT;
     }
 
     public boolean startRecording() {
         if (!isRecordStarted()) {
-            if (mRecorder == null) initRecorder();
+            if (recorder == null) initRecorder();
             try {
-                mRecorder.start();
-                mRecordStarted = true;
+                recorder.start();
+                recordStarted = true;
             } catch (IllegalStateException e) {
                 showErrorToast();
-                WorkWithFiles.removeRecord(mRecordName);
-                mRecordStarted = false;
+                WorkWithFiles.removeRecord(recordName);
+                recordStarted = false;
             }
         }
         return isRecordStarted();
@@ -67,20 +67,20 @@ public class SoundRecorder {
 
     public void stopRecording() {
         if (isRecordStarted()) {
-            mRecorder.stop();
-            mRecordStarted = false;
+            recorder.stop();
+            recordStarted = false;
         }
     }
 
-    public boolean isRecordStarted() { return mRecordStarted; }
+    public boolean isRecordStarted() { return recordStarted; }
 
     private void showErrorToast() {
-        Toast.makeText(mContext, R.string.illegal_exception_when_mic_used,Toast.LENGTH_SHORT).show();
+        Toast.makeText(context, R.string.illegal_exception_when_mic_used,Toast.LENGTH_SHORT).show();
     }
 
     public void releaseRecorder() {
-        mRecorder.reset();
-        mRecorder.release();
-        mRecorder = null;
+        recorder.reset();
+        recorder.release();
+        recorder = null;
     }
 }

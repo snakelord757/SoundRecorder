@@ -14,19 +14,19 @@ import com.snakelord.soundrecorder.R;
 
 public final class AboutAppDialogFragment extends DialogFragment {
 
-    private TextView mAppVersionTextView;
+    private TextView appVersionTextView;
     private static final String APP_VERSION = "Version : %s";
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View dialogView = inflater.inflate(R.layout.dialog_about_app, container, false);
-        mAppVersionTextView = dialogView.findViewById(R.id.app_version);
+        appVersionTextView = dialogView.findViewById(R.id.app_version);
         setAppVersionTex();
         return dialogView;
     }
 
     private void setAppVersionTex() {
-        mAppVersionTextView.setText(String.format(APP_VERSION, getVersionName()));
+        appVersionTextView.setText(String.format(APP_VERSION, getVersionName()));
     }
 
     private String getVersionName() {

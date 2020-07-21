@@ -16,11 +16,11 @@ import com.snakelord.soundrecorder.workingFolder.WorkWithFiles;
 
 public final class BottomSheetPlayer extends BottomSheetDialogFragment {
 
-    private BottomSheetBehavior mBottomSheetBehavior;
-    private TextView mRecordNameTextView;
-    private ImageButton mStartPlayingImageButton;
-    private ImageButton mStopPlayingImageButton;
-    private RecordsMediaPlayer mRecordsPlayer;
+    private BottomSheetBehavior bottomSheetBehavior;
+    private TextView recordNameTextView;
+    private ImageButton startPlayingImageButton;
+    private ImageButton stopPlayingImageButton;
+    private RecordsMediaPlayer recordsPlayer;
     private static final String RECORD_PATH = "Record path";
 
     public static BottomSheetPlayer newInstance(String path) {
@@ -42,65 +42,65 @@ public final class BottomSheetPlayer extends BottomSheetDialogFragment {
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
         BottomSheetDialog bottomSheetDialog = (BottomSheetDialog) super.onCreateDialog(savedInstanceState);
         View bottomSheet = View.inflate(getContext(), R.layout.bottom_sheet_record_mediaplayer, null);
-        mRecordNameTextView = bottomSheet.findViewById(R.id.record_name_player);
-        mStartPlayingImageButton = bottomSheet.findViewById(R.id.start_record);
-        mStopPlayingImageButton = bottomSheet.findViewById(R.id.stop_player);
+        recordNameTextView = bottomSheet.findViewById(R.id.record_name_player);
+        startPlayingImageButton = bottomSheet.findViewById(R.id.start_record);
+        stopPlayingImageButton = bottomSheet.findViewById(R.id.stop_player);
         setRecordName();
         initRecordsPlayer();
         setImageButtonsOnClickListener();
         bottomSheetDialog.setContentView(bottomSheet);
-        mBottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheet.getParent());
+        bottomSheetBehavior = BottomSheetBehavior.from((View) bottomSheet.getParent());
         return bottomSheetDialog;
     }
 
     @Override
     public void onStart() {
         super.onStart();
-        mBottomSheetBehavior.setHideable(true);
-        mBottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
+        bottomSheetBehavior.setHideable(true);
+        bottomSheetBehavior.setState(BottomSheetBehavior.STATE_EXPANDED);
     }
 
     private void initRecordsPlayer() {
-        mRecordsPlayer = new RecordsMediaPlayer(getArguments().getString(RECORD_PATH));
+        recordsPlayer = new RecordsMediaPlayer(getArguments().getString(RECORD_PATH));
     }
 
     private void setRecordName() {
-        mRecordNameTextView.setText(WorkWithFiles.getFileName(getArguments().getString(RECORD_PATH)));
+        recordNameTextView.setText(WorkWithFiles.getFileName(getArguments().getString(RECORD_PATH)));
     }
 
     private void setImageButtonsOnClickListener() {
-        mStartPlayingImageButton.setOnClickListener(v -> {
-            if (!mRecordsPlayer.isPlayerStarted())
+        startPlayingImageButton.setOnClickListener(v -> {
+            if (!recordsPlayer.isPlayerStarted())
                 startPlayer();
             else
                 pausePlayer();
         });
-        mStopPlayingImageButton.setOnClickListener(v -> {
-            mRecordsPlayer.stopPlayer();
+        stopPlayingImageButton.setOnClickListener(v -> {
+            recordsPlayer.stopPlayer();
             dismiss();
         });
     }
 
     private void startPlayer() {
-        mStartPlayingImageButton.setImageResource(R.drawable.ic_pause_red_24dp);
-        mRecordsPlayer.startPlayer();
+        startPlayingImageButton.setImageResource(R.drawable.ic_pause_red_24dp);
+        recordsPlayer.startPlayer();
     }
 
     private void pausePlayer() {
-        mStartPlayingImageButton.setImageResource(R.drawable.ic_play_arrow_red_24dp);
-        mRecordsPlayer.pausePlayer();
+        startPlayingImageButton.setImageResource(R.drawable.ic_play_arrow_red_24dp);
+        recordsPlayer.pausePlayer();
     }
 
     @Override
     public void onDestroy() {
-        mRecordsPlayer.releasePlayer();
+        recordsPlayer.releasePlayer();
         super.onDestroy();
     }
 
     @Override
     public void dismiss() {
-        if (mRecordsPlayer != null)
-            mRecordsPlayer.releasePlayer();
+        if (recordsPlayer != null)
+            recordsPlayer.releasePlayer();
         super.dismiss();
     }
 }

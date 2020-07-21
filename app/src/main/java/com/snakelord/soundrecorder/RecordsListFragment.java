@@ -19,8 +19,8 @@ import com.snakelord.soundrecorder.interfaces.OnRecordListener;
 
 public final class RecordsListFragment extends Fragment implements OnRecordListener, DialogCallback {
 
-    private View mRecordsListView;
-    private RecyclerView mRecordsRecyclerView;
+    private View recordsListView;
+    private RecyclerView recordsRecyclerView;
     private RecordsListAdapter adapter;
 
     @Override
@@ -31,11 +31,11 @@ public final class RecordsListFragment extends Fragment implements OnRecordListe
 
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        mRecordsListView = inflater.inflate(R.layout.fragment_rercords_list, container, false);
-        mRecordsRecyclerView = mRecordsListView.findViewById(R.id.records_recycler_view);
+        recordsListView = inflater.inflate(R.layout.fragment_rercords_list, container, false);
+        recordsRecyclerView = recordsListView.findViewById(R.id.records_recycler_view);
         checkIsFolderEmpty();
         initRecordsRecyclerView();
-        return mRecordsListView;
+        return recordsListView;
     }
 
     private void showEmptyFolderPlaceholder(View parent) {
@@ -47,8 +47,8 @@ public final class RecordsListFragment extends Fragment implements OnRecordListe
         adapter = new RecordsListAdapter( this);
         adapter.setFileList(new WorkingFolder(getContext()).getRecordsList());
         LinearLayoutManager layoutManager = new LinearLayoutManager(getContext());
-        mRecordsRecyclerView.setAdapter(adapter);
-        mRecordsRecyclerView.setLayoutManager(layoutManager);
+        recordsRecyclerView.setAdapter(adapter);
+        recordsRecyclerView.setLayoutManager(layoutManager);
     }
 
     @Override
@@ -71,5 +71,5 @@ public final class RecordsListFragment extends Fragment implements OnRecordListe
         checkIsFolderEmpty();
     }
 
-    private void checkIsFolderEmpty() { if (new WorkingFolder(getContext()).isFolderEmpty())  showEmptyFolderPlaceholder(mRecordsListView); }
+    private void checkIsFolderEmpty() { if (new WorkingFolder(getContext()).isFolderEmpty())  showEmptyFolderPlaceholder(recordsListView); }
 }

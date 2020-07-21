@@ -15,62 +15,62 @@ import java.io.File;
 
 public final class RecordsListAdapter extends RecyclerView.Adapter<RecordsListAdapter.RecordsViewHolder> {
 
-    private File[] mRecordList;
-    private RecordsListFragment mOnRecordListener;
+    private File[] recordList;
+    private RecordsListFragment onRecordListener;
 
     public RecordsListAdapter(RecordsListFragment onRecordListener) {
-        this.mOnRecordListener = onRecordListener;
+        this.onRecordListener = onRecordListener;
     }
 
     @NonNull
     @Override
     public RecordsListAdapter.RecordsViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return new RecordsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_record, parent, false), mOnRecordListener);
+        return new RecordsViewHolder(LayoutInflater.from(parent.getContext()).inflate(R.layout.item_record, parent, false), onRecordListener);
     }
 
     @Override
     public void onBindViewHolder(@NonNull RecordsViewHolder holder, int position) {
-        holder.getRecord(mRecordList[position]);
+        holder.getRecord(recordList[position]);
         holder.bind();
     }
 
     @Override
-    public int getItemCount() { return mRecordList.length; }
+    public int getItemCount() { return recordList.length; }
 
-    public void setFileList(File[] newRecordsList) { mRecordList = newRecordsList; }
+    public void setFileList(File[] newRecordsList) { recordList = newRecordsList; }
 
    static final class RecordsViewHolder extends RecyclerView.ViewHolder implements View.OnLongClickListener, View.OnClickListener {
 
-        private File mRecord;
-        private TextView mRecordNameTextView;
-        private TextView mRecordDurationTextView;
-        private OnRecordListener mOnRecordListener;
+        private File record;
+        private TextView recordNameTextView;
+        private TextView recordDurationTextView;
+        private OnRecordListener onRecordListener;
 
        RecordsViewHolder(@NonNull View itemView, RecordsListFragment onRecordListener) {
             super(itemView);
-            mRecordNameTextView = itemView.findViewById(R.id.record_name);
-            mRecordDurationTextView = itemView.findViewById(R.id.record_duration);
+            recordNameTextView = itemView.findViewById(R.id.record_name);
+            recordDurationTextView = itemView.findViewById(R.id.record_duration);
             ConstraintLayout recordItem = itemView.findViewById(R.id.record_item);
-            this.mOnRecordListener = onRecordListener;
+            this.onRecordListener = onRecordListener;
             recordItem.setOnLongClickListener(this);
             recordItem.setOnClickListener(this);
         }
 
         void bind() {
-            mRecordNameTextView.setText(mRecord.getName());
-            mRecordDurationTextView.setText(WorkWithFiles.getAudioDuration(mRecord));
+            recordNameTextView.setText(record.getName());
+            recordDurationTextView.setText(WorkWithFiles.getAudioDuration(record));
         }
 
-       void getRecord(File record) { this.mRecord = record; }
+       void getRecord(File record) { this.record = record; }
 
        @Override
        public boolean onLongClick(View v) {
-            mOnRecordListener.onRecordLongClick(getAdapterPosition());
+            onRecordListener.onRecordLongClick(getAdapterPosition());
             return true;
        }
 
        @Override
-       public void onClick(View v) { mOnRecordListener.onRecordClick(getAdapterPosition()); }
+       public void onClick(View v) { onRecordListener.onRecordClick(getAdapterPosition()); }
    }
 
 }
